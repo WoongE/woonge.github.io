@@ -4,7 +4,7 @@ title:  "지킬 프로젝트의 구조"
 date:   2018-06-03 18:37:00 +0900
 categories: jekyll update
 ---
-[웅이의 블로그](https://blog.nave.com/woong17)
+[웅이의 블로그](https://blog.naver.com/woong17)
 
 지킬 프로젝트의 구조에 대해서 설명합니다.
 
