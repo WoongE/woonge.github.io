@@ -1,8 +1,11 @@
 ---
 layout: page
-title: About
+title: About 웅이
 permalink: /about/
 ---
+
+쿠팡에서 2년차 웹 개발자로 일하고 있는 웅이입니다.
+[웅이의 네이버 블로그](https://blog.naver.com/woong17)
 
 This is the base Jekyll theme. You can find out more info about customizing your Jekyll theme, as well as basic Jekyll usage documentation at [jekyllrb.com](https://jekyllrb.com/)
 
