@@ -1,63 +1,76 @@
 ---
-import AboutHeroImage from '../assets/blog-placeholder-about.jpg';
-import Layout from '../layouts/BlogPost.astro';
+import Layout from '../layouts/ResumeLayout.astro';
+import { getCollection } from 'astro:content';
+import profileImage from '../assets/woonge_profile.jpeg';
+
+const careers = (await getCollection('career'))
+    .filter(item => item.data.lang === 'ko')
+    .sort((a, b) => b.data.order - a.data.order);
 ---
 
 <Layout
-	title="About Me"
-	description="Lorem ipsum dolor sit amet"
-	pubDate={new Date('August 08 2021')}
-	heroImage={AboutHeroImage}
+	title="김원웅 (WoongE)"
+	description="10년차, 비즈니스 가치를 극대화하는 생산성 주도 개발자"
+    profileImage={profileImage}
 >
 	<p>
-		Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-		labore et dolore magna aliqua. Vitae ultricies leo integer malesuada nunc vel risus commodo
-		viverra. Adipiscing enim eu turpis egestas pretium. Euismod elementum nisi quis eleifend quam
-		adipiscing. In hac habitasse platea dictumst vestibulum. Sagittis purus sit amet volutpat. Netus
-		et malesuada fames ac turpis egestas. Eget magna fermentum iaculis eu non diam phasellus
-		vestibulum lorem. Varius sit amet mattis vulputate enim. Habitasse platea dictumst quisque
-		sagittis. Integer quis auctor elit sed vulputate mi. Dictumst quisque sagittis purus sit amet.
+		Email: <a href="mailto:woong17@naver.com">woong17@naver.com</a>
 	</p>
 
-	<p>
-		Morbi tristique senectus et netus. Id semper risus in hendrerit gravida rutrum quisque non
-		tellus. Habitasse platea dictumst quisque sagittis purus sit amet. Tellus molestie nunc non
-		blandit massa. Cursus vitae congue mauris rhoncus. Accumsan tortor posuere ac ut. Fringilla urna
-		porttitor rhoncus dolor. Elit ullamcorper dignissim cras tincidunt lobortis. In cursus turpis
-		massa tincidunt dui ut ornare lectus. Integer feugiat scelerisque varius morbi enim nunc.
-		Bibendum neque egestas congue quisque egestas diam. Cras ornare arcu dui vivamus arcu felis
-		bibendum. Dignissim suspendisse in est ante in nibh mauris. Sed tempus urna et pharetra pharetra
-		massa massa ultricies mi.
-	</p>
+	<blockquote>
+		<p>
+			<strong>"10년차, 비즈니스 가치를 극대화하는 생산성 주도 개발자(Productivity Driven Developer), 김원웅입니다."</strong>
+		</p>
+		<p>
+			지난 9년 2개월 간, 쿠팡과 닥터나우에서 대규모 트래픽 처리와 0 to 1 서비스 구축을 모두 경험했습니다.<br/>
+            특히 스타트업의 '전시 상황(Wartime)' 속에서 <strong>비즈니스 임팩트 중심의 풀사이클 엔지니어링</strong>을 수행하며, 기술적 의사결정의 핵심은 <strong>‘팀의 시간당 창출 가치(생산성) 극대화’</strong>여야 한다고 믿습니다.<br/>
+            현재는 단순한 기능 구현을 넘어, 기술로 사업의 문제를 해결하고 조직의 효율을 혁신하는 <strong>Staff Engineer</strong> 또는 <strong>CTO</strong> 레벨의 커리어를 지향하고 있습니다.
+		</p>
+	</blockquote>
 
-	<p>
-		Mollis nunc sed id semper risus in. Convallis a cras semper auctor neque. Diam sit amet nisl
-		suscipit. Lacus viverra vitae congue eu consequat ac felis donec. Egestas integer eget aliquet
-		nibh praesent tristique magna sit amet. Eget magna fermentum iaculis eu non diam. In vitae
-		turpis massa sed elementum. Tristique et egestas quis ipsum suspendisse ultrices. Eget lorem
-		dolor sed viverra ipsum. Vel turpis nunc eget lorem dolor sed viverra. Posuere ac ut consequat
-		semper viverra nam. Laoreet suspendisse interdum consectetur libero id faucibus. Diam phasellus
-		vestibulum lorem sed risus ultricies tristique. Rhoncus dolor purus non enim praesent elementum
-		facilisis. Ultrices tincidunt arcu non sodales neque. Tempus egestas sed sed risus pretium quam
-		vulputate. Viverra suspendisse potenti nullam ac tortor vitae purus faucibus ornare. Fringilla
-		urna porttitor rhoncus dolor purus non. Amet dictum sit amet justo donec enim.
-	</p>
+    <h2>주요 경력</h2>
+    <div class="career-list">
+        {careers.map((career) => (
+            <div class="career-item">
+                <div class="career-header">
+                    <div class="career-title">
+                        <h3>{career.data.title}</h3>
+                        <span class="career-company">{career.data.company}</span>
+                    </div>
+                    <span class="career-date">{career.data.startDate} ~ {career.data.endDate}</span>
+                </div>
+                <p class="career-summary">
+                    {career.data.summary}
+                </p>
+                <a href={`/career/${career.id}`} class="read-more">상세 내용 보기</a>
+            </div>
+        ))}
+    </div>
 
-	<p>
-		Mattis ullamcorper velit sed ullamcorper morbi tincidunt. Tortor posuere ac ut consequat semper
-		viverra. Tellus mauris a diam maecenas sed enim ut sem viverra. Venenatis urna cursus eget nunc
-		scelerisque viverra mauris in. Arcu ac tortor dignissim convallis aenean et tortor at. Curabitur
-		gravida arcu ac tortor dignissim convallis aenean et tortor. Egestas tellus rutrum tellus
-		pellentesque eu. Fusce ut placerat orci nulla pellentesque dignissim enim sit amet. Ut enim
-		blandit volutpat maecenas volutpat blandit aliquam etiam. Id donec ultrices tincidunt arcu. Id
-		cursus metus aliquam eleifend mi.
-	</p>
+	<h2>보유 기술</h2>
 
-	<p>
-		Tempus quam pellentesque nec nam aliquam sem. Risus at ultrices mi tempus imperdiet. Id porta
-		nibh venenatis cras sed felis eget velit. Ipsum a arcu cursus vitae. Facilisis magna etiam
-		tempor orci eu lobortis elementum. Tincidunt dui ut ornare lectus sit. Quisque non tellus orci
-		ac. Blandit libero volutpat sed cras. Nec tincidunt praesent semper feugiat nibh sed pulvinar
-		proin gravida. Egestas integer eget aliquet nibh praesent tristique magna.
-	</p>
+	<h3>Core Backend & Architecture</h3>
+	<ul>
+		<li><strong>Languages & Frameworks:</strong> Java, Kotlin, Spring Boot Ecosystem (Expert).</li>
+		<li><strong>Architecture:</strong> Modular Monolith, Hexagonal Architecture, Domain Driven Design (DDD).</li>
+		<li><strong>Data & Search:</strong> PostgreSQL, MySQL, Redis, Elastic Search (OpenSearch), HBase.</li>
+	</ul>
+
+	<h3>Infrastructure & DevOps</h3>
+	<ul>
+		<li><strong>AWS:</strong> EC2, ECS, RDS(Aurora/Postgres), S3, CloudFront 등 전체 인프라 직접 구축 및 운영.</li>
+		<li><strong>Cost Optimization:</strong> 스타트업 환경에 맞는 비용 효율적인 아키텍처 설계 (75% 비용 절감).</li>
+		<li><strong>CI/CD:</strong> GitHub Actions, Jenkins.</li>
+	</ul>
+
+    <h3>AI Engineering</h3>
+    <ul>
+        <li><strong>AI Integration:</strong> Spring AI, RAG (Retrieval-Augmented Generation) w/ PGVector.</li>
+        <li><strong>AI-Assisted Development:</strong> Claude Code 및 LLM 도구를 활용한 'Vibe Coding' 노하우.</li>
+    </ul>
+
+	<h2>학력</h2>
+	<ul>
+		<li>서강대학교 학사 (컴퓨터공학과 / 수학과) (2010.3 ~ 2017.2)</li>
+	</ul>
 </Layout>

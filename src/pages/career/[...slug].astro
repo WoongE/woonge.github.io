@@ -1,0 +1,53 @@
+---
+import { type CollectionEntry, getCollection } from 'astro:content';
+import Layout from '../../layouts/ResumeLayout.astro';
+import { render } from 'astro:content';
+
+export async function getStaticPaths() {
+	const posts = await getCollection('career');
+	return posts.map((post) => ({
+		params: { slug: post.id },
+		props: post,
+	}));
+}
+type Props = CollectionEntry<'career'>;
+
+const post = Astro.props;
+const { Content } = await render(post);
+---
+
+<Layout title={post.data.title} description={post.data.summary}>
+    <div class="career-detail-header">
+        <h1>{post.data.title}</h1>
+        <p class="company-role">
+            <strong>{post.data.company}</strong> | {post.data.role}
+        </p>
+        <p class="date">
+            {post.data.startDate} ~ {post.data.endDate}
+        </p>
+    </div>
+    <div class="prose">
+	    <Content />
+    </div>
+    <div class="back-link">
+        <a href={post.data.lang === 'en' ? '/en/about' : '/about'}>← Back to Resume</a>
+    </div>
+</Layout>
+<style>
+    .career-detail-header {
+        margin-bottom: 2rem;
+        border-bottom: 1px solid var(--border);
+        padding-bottom: 1rem;
+    }
+    .company-role {
+        font-size: 1.2rem;
+        color: var(--text-main);
+        margin-bottom: 0.5rem;
+    }
+    .date {
+        color: var(--text-secondary);
+    }
+    .back-link {
+        margin-top: 3rem;
+    }
+</style>

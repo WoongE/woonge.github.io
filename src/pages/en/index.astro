@@ -1,0 +1,34 @@
+---
+import { Image } from 'astro:assets';
+import BaseHead from '../../components/BaseHead.astro';
+import Footer from '../../components/Footer.astro';
+import Header from '../../components/Header.astro';
+import { SITE_TITLE, SITE_DESCRIPTION } from '../../consts';
+import profileImage from '../../assets/woonge_profile.jpeg';
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+	</head>
+	<body>
+		<Header />
+		<main>
+			<div class="hero">
+				<Image src={profileImage} alt="Kim Wonwoong Profile" class="profile-img" width={240} height={240} loading="eager" />
+				<h1>Hello, I'm Kim Wonwoong.</h1>
+				<p class="subtitle">10-Year Staff Engineer / Tech Lead</p>
+				<p class="intro">
+					I am a "Productivity Driven Developer" focused on maximizing business value.<br/>
+                    I possess deep experience in both Hyperscale Traffic Handling (Coupang) and 0-to-1 Startup Agility (Doctornow).<br/>
+                    I solve complex business problems through technology.
+				</p>
+				<div class="cta-buttons">
+					<a href="/en/about" class="button primary">View Resume</a>
+				</div>
+			</div>
+		</main>
+		<Footer />
+	</body>
+</html>

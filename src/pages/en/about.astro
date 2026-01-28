@@ -1,0 +1,76 @@
+---
+import Layout from '../../layouts/ResumeLayout.astro';
+import { getCollection } from 'astro:content';
+import profileImage from '../../assets/woonge_profile.jpeg';
+
+const careers = (await getCollection('career'))
+    .filter(item => item.data.lang === 'en')
+    .sort((a, b) => b.data.order - a.data.order);
+---
+
+<Layout
+	title="Kim Wonwoong (WoongE)"
+	description="10-Year Productivity Driven Staff Engineer / Tech Lead"
+    profileImage={profileImage}
+>
+	<p>
+		Email: <a href="mailto:woong17@naver.com">woong17@naver.com</a>
+	</p>
+
+	<blockquote>
+		<p>
+			<strong>"10-Year, Productivity Driven Developer focusing on maximizing business value."</strong>
+		</p>
+		<p>
+			Over the past 9 years and 2 months, I have experienced both handling large-scale traffic at <strong>Coupang</strong> and building 0-to-1 services at <strong>Doctornow</strong>.<br/>
+            Specifically, I specialize in <strong>Business Impact-centric Full-cycle Engineering</strong> within the 'Wartime' environment of startups. I believe the core of technical decision-making should be <strong>'maximizing the value created per hour (productivity) of the team'</strong>.<br/>
+            Beyond feature implementation, I am aiming for a <strong>Staff Engineer</strong> or <strong>CTO</strong> level career that solves business problems and innovates organizational efficiency through technology.
+		</p>
+	</blockquote>
+
+    <h2>Experience Highlights</h2>
+    <div class="career-list">
+        {careers.map((career) => (
+            <div class="career-item">
+                <div class="career-header">
+                    <div class="career-title">
+                        <h3>{career.data.title}</h3>
+                        <span class="career-company">{career.data.company}</span>
+                    </div>
+                    <span class="career-date">{career.data.startDate} ~ {career.data.endDate}</span>
+                </div>
+                <p class="career-summary">
+                    {career.data.summary}
+                </p>
+                <a href={`/career/${career.id}`} class="read-more">Read More</a>
+            </div>
+        ))}
+    </div>
+
+	<h2>Skills</h2>
+
+	<h3>Core Backend & Architecture</h3>
+	<ul>
+		<li><strong>Languages & Frameworks:</strong> Java, Kotlin, Spring Boot Ecosystem (Expert).</li>
+		<li><strong>Architecture:</strong> Modular Monolith, Hexagonal Architecture, Domain Driven Design (DDD).</li>
+		<li><strong>Data & Search:</strong> PostgreSQL, MySQL, Redis, Elastic Search (OpenSearch), HBase.</li>
+	</ul>
+
+	<h3>Infrastructure & DevOps</h3>
+	<ul>
+		<li><strong>AWS:</strong> Full experience building & operating EC2, ECS, RDS(Aurora/Postgres), S3, CloudFront.</li>
+		<li><strong>Cost Optimization:</strong> Expertise in designing cost-effective architectures for startups (75% reduction track record).</li>
+		<li><strong>CI/CD:</strong> GitHub Actions, Jenkins.</li>
+	</ul>
+
+    <h3>AI Engineering</h3>
+    <ul>
+        <li><strong>AI Integration:</strong> Spring AI, RAG (Retrieval-Augmented Generation) w/ PGVector.</li>
+        <li><strong>AI-Assisted Development:</strong> Expertise in 'Vibe Coding' using Claude Code & LLMs.</li>
+    </ul>
+
+	<h2>Education</h2>
+	<ul>
+		<li>Sogang University, Bachelor's in Computer Science / Mathematics (2010.3 ~ 2017.2)</li>
+	</ul>
+</Layout>
