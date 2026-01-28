@@ -1,5 +1,5 @@
 ---
-title: "Doctornow Japan Project"
+title: "Doctornow Japan"
 company: "Doctornow"
 role: "Product Team Lead / Tech Lead"
 startDate: "2024.01"

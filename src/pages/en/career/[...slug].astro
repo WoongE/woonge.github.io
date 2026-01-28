@@ -1,12 +1,12 @@
 ---
 import { type CollectionEntry, getCollection } from 'astro:content';
-import Layout from '../../layouts/ResumeLayout.astro';
+import Layout from '../../../layouts/ResumeLayout.astro';
 import { render } from 'astro:content';
 
 export async function getStaticPaths() {
-	const posts = await getCollection('career', ({ data }) => data.lang === 'ko');
+	const posts = await getCollection('career', ({ data }) => data.lang === 'en');
 	return posts.map((post) => ({
-		params: { slug: post.id.replace(/^ko\//, '') },
+		params: { slug: post.id.replace(/^en\//, '') },
 		props: post,
 	}));
 }
@@ -30,7 +30,7 @@ const { Content } = await render(post);
 	    <Content />
     </div>
     <div class="back-link">
-        <a href="/about">&larr; 이력서로 돌아가기</a>
+        <a href="/en/about">&larr; Back to Resume</a>
     </div>
 </Layout>
 <style>

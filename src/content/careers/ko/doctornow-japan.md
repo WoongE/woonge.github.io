@@ -1,5 +1,5 @@
 ---
-title: "닥터나우 일본 (Doctornow Japan)"
+title: "닥터나우 일본"
 company: "Doctornow"
 role: "Product Team Lead / Tech Lead"
 startDate: "2024.01"

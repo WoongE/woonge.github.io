@@ -42,7 +42,7 @@ const careers = (await getCollection('career'))
                 <p class="career-summary">
                     {career.data.summary}
                 </p>
-                <a href={`/career/${career.id}`} class="read-more">Read More</a>
+                <a href={`/en/career/${career.id.replace(/^en\//, '')}`} class="read-more">Read More</a>
             </div>
         ))}
     </div>
